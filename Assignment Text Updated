@@ -1,0 +1,91 @@
+For this project, you can work in a group of 3-4 people. You can use java, c, c++, or python.
+
+Implement a scanner that can recognize the following type of tokens:
+
+1) keywords, one of 
+     double int long char boolean
+2) operator 
+=   
++   -   *   /   
++=  -=  *=  /=  
+
+3) integer literal
+
+DecimalIntegerLiteral defined here 
+https://docs.oracle.com/javase/specs/jls/se17/html/jls-3.html#jls-DecimalIntegerLiteral 
+
+DecimalIntegerLiteral:
+DecimalNumeral [IntegerTypeSuffix]
+DecimalNumeral:
+  0
+   NonZeroDigit [Digits]
+   NonZeroDigit Underscores Digits
+NonZeroDigit: (one of)  1 2 3 4 5 6 7 8 9
+Digits:
+     Digit
+     Digit [DigitsAndUnderscores] Digit
+Digit: (one of)  0 1 2 3 4 5 6 7 8 9
+
+DigitsAndUnderscores:
+  DigitOrUnderscore {DigitOrUnderscore}
+DigitOrUnderscore:
+  Digit
+ _
+Underscores:
+_ {_}
+IntegerTypeSuffix:
+(one of)
+l L
+Examples of valid DecimalIntegerLiteral:
+0  
+1
+52
+5_2
+5_2L
+5_2l
+5__2
+5_21
+Examples of invalid DecimalIntegerLiteral: 
+00  // leading zero 
+01 // leading zero 
+0_52 // leading zero 
+_52 // starts with underscore 
+52_ // end with underscore 
+4) double literal
+
+one or more digits.[zero or more digits]
+
+5) identifier
+  a letter followed by sequence of digits or letter
+  cannot be a keyword in 1)
+
+ letter: a-z, or A-Z
+ digits: 0-9
+6) separators, one of 
+;  , 
+
+7)  use "longest token rule":  includes characters in a token until it reaches a character that cannot be included.
+
+int2x+3;   // identifier operator integer_literal separator
+
+2int,    // integer_literal keyword separator
+
+Examples of possible input (comments are not part of the input):
+
+int x;   // keyword identifier separator
+
+int x=2; // keyword identifier operator integer_literal separator
+
+int x=2l; // keyword identifier operator integer_literal separator
+
+long x12=2L; // keyword identifier operator integer_literal separator
+
+double i,j; // keyword identifier separator identifier
+
+i+=j; //identifier operator identifier
+
+i-j=3;//identifier operator identifier operator integer_literal 
+
+The program should read  a file, output the tokens on screen or file. Remember a token is pair including the lexeme and its type
+
+Submit your source code, your test file, the output of your test file, your file should test all possible cases
